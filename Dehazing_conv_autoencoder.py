@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Jul 23 20:23:03 2022
-
-@author: Asus
-"""
 
 import os 
 import cv2
@@ -15,18 +10,16 @@ import torch.utils as utils
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
-
 import matplotlib.pyplot as plt
 
 if torch.cuda.is_available():
     device = "cuda:0"
 else:
     device = "cpu"
-print(f"# Using device: {device}")
 
 torch.cuda.empty_cache()
 
-class dehazer(): 
+class converter(): 
     
     def __init__(self, IMG_SIZE,LABEL_DIR,LABEL_NAME):
 
@@ -59,11 +52,11 @@ hazy_dir='./Datasets/Kaggle_Dense-Haze CVPR 2019/hazy/hazy'
 gt_dir='./Datasets/Kaggle_Dense-Haze CVPR 2019/GT/GT' 
     
 if (REBUILD_DATA):
-    dehazing=dehazer(img_size, gt_dir, 'GT')
-    dehazing.make_training_data()
+    convert=converter(img_size, gt_dir, 'GT')
+    convert.make_training_data()
     
-    dehazing=dehazer(img_size, hazy_dir, 'hazy')
-    dehazing.make_training_data()
+    convert=converter(img_size, hazy_dir, 'hazy')
+    convert.make_training_data()
 
 
 origin = np.load('GT.npy',allow_pickle=True)
