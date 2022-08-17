@@ -206,7 +206,6 @@ for train_orig, train_hazy in zip(train_orig_loader, train_hazy_loader):
 
 criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, betas=(0.9,0.999))
-losses=[]
 n_epochs = 1000
 
 for epoch in range(1,n_epochs+1):
@@ -235,7 +234,6 @@ for epoch in range(1,n_epochs+1):
         optimizer.step()
     
     print(f'Epoch {epoch}/{n_epochs} :\tTraining Loss:{loss:.6f}') 
-    losses.append(loss)
     
 torch.save(model,'dehaze_autoencoder'+n_epochs.__str__()+'.pkl')
 model = torch.load('dehaze_autoencoder'+n_epochs.__str__()+'.pkl')
